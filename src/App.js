@@ -1,10 +1,12 @@
-import logo from './logo.svg';
+import React from 'react'
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+import Navbar from './components/layouts/Navbar';
 
 function App() {
   return (
-    <div className="container">
-      <button className="btn btn-primary">Hallo World!</button>
-    </div>
+    <Router>
+      <Navbar />
+    </Router>
   );
 }
 
