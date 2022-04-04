@@ -15,11 +15,11 @@ const Home = () => {
 
   return (
     <div className="container max-w-screen-xl mt-10">
-        <div className="flex justify-center">
-            <div className="">
+        <div className="flex-wrap justify-center md:flex">
+            <div className="ml-10 md:ml-0">
                 <FormInput />
             </div>
-            <div className="ml-10">
+            <div className="mt-5 ml-10 md:mt-0">
                 { notes ? <NotesList notes={notes} /> : <LoadingSkeleton/> }
                 
             </div>

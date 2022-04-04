@@ -12,13 +12,13 @@ const Favorites = () => {
   }])
 
   const favnotes = useSelector((state) => state.firestore.ordered.favorite)
-  console.log('favorite', favnotes)
+  console.log(favnotes)
 
   return (
     <div className="flex justify-center mt-10">
         <div>
             <h1 className="mt-2 mb-3 text-2xl font-bold">Your Favorite Notes</h1>
-            { favnotes.length <= 0 ? 'No data found!' : <NotesList notes={favnotes} /> }
+            <NotesList notes={favnotes} />
         </div>
     </div>
   )

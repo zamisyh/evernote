@@ -2,6 +2,7 @@ import React from 'react'
 import { deleteNote, toggleFav, unToggleFav } from '../../store/actions/noteAction'
 import { useDispatch } from 'react-redux'
 import moment from 'moment'
+import { Link } from 'react-router-dom'
 
 const NotesList = ({notes}) => {
 
@@ -25,7 +26,11 @@ const NotesList = ({notes}) => {
             <div className="mb-4 shadow-xl card w-96 bg-base-100" key={index}>   
                 <div className="card-body">
                     <div className="flex justify-between card-title">
-                        <div>{note.title}</div>
+                        <div>
+                            <Link to={`note/${note.id}`}>
+                                {note.title}
+                            </Link>
+                        </div>
                         <div className="flex">
                             { note.favorite === false ? 
                                 <svg onClick={() => favoriteNoteHandler(note)} xmlns="http://www.w3.org/2000/svg" role="button" width="16" height="16" fill="currentColor" className="bi bi-heart" viewBox="0 0 16 16">
