@@ -7,7 +7,7 @@ export const addNote = (note) => {
             favorite: false,
             createdAt: new Date()
         }).then((res) => {
-            alert('Succesfully created notes')
+            console.log('Succesfullt create notes')
         }).catch((err) => {
             console.log('Error', err)
         })

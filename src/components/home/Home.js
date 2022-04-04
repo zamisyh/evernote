@@ -1,16 +1,16 @@
 import React from 'react'
 import FormInput from './FormInput'
 import { useSelector } from 'react-redux'
-import { useFirebaseConnect } from 'react-redux-firebase'
+import { useFirestoreConnect } from 'react-redux-firebase'
+import NotesList from '../notes/NotesList'
 
 const Home = () => {
-  // useFirebaseConnect([{
-  //   collection: 'notes',
-  //   orderBy: ['createdAt', 'desc']
-  // }])
+  useFirestoreConnect([{
+    collection: 'notes',
+    orderBy: ['createdAt', 'desc']
+  }])
 
-  // const notes = useSelector((state) => state.firestore.ordered.notes)
-  // console.log(notes)
+  const notes = useSelector((state) => state.firestore.ordered.notes)
 
   return (
     <div className="container max-w-screen-xl mt-10">
@@ -19,7 +19,7 @@ const Home = () => {
                 <FormInput />
             </div>
             <div className="ml-10">
-                Notelist
+                <NotesList notes={notes} />
             </div>
         </div>
     </div>
