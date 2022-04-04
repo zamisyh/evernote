@@ -3,6 +3,7 @@ import FormInput from './FormInput'
 import { useSelector } from 'react-redux'
 import { useFirestoreConnect } from 'react-redux-firebase'
 import NotesList from '../notes/NotesList'
+import LoadingSkeleton from '../layouts/LoadingSkeleton'
 
 const Home = () => {
   useFirestoreConnect([{
@@ -19,7 +20,8 @@ const Home = () => {
                 <FormInput />
             </div>
             <div className="ml-10">
-                <NotesList notes={notes} />
+                { notes ? <NotesList notes={notes} /> : <LoadingSkeleton/> }
+                
             </div>
         </div>
     </div>

@@ -13,3 +13,17 @@ export const addNote = (note) => {
         })
     }
 }
+
+export const deleteNote = (note) => {
+    return (dispatch, getState, { getFirestore }) => {
+        const firestore = getFirestore()
+        firestore.collection('notes').doc(note).delete()
+        .then((res) => {
+            console.log('Succesfullt delete notes')
+        }).catch((err) => {
+            console.log('Error', err)
+        })
+    }
+    
+
+}
