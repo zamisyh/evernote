@@ -1,6 +1,7 @@
 import React from 'react'
 import { deleteNote, toggleFav, unToggleFav } from '../../store/actions/noteAction'
 import { useDispatch } from 'react-redux'
+import moment from 'moment'
 
 const NotesList = ({notes}) => {
 
@@ -48,7 +49,9 @@ const NotesList = ({notes}) => {
                     <p>
                         {note.content}
                     </p>
-                    <p className="mt-2 text-sm font-thin">2 Days Ago</p>
+                    <p className="mt-2 text-sm font-thin">
+                        { moment(note.createdAt.toDate()).fromNow() }
+                    </p>
                 </div>
             </div>
         )) }
