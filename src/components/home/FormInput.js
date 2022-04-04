@@ -1,11 +1,13 @@
-import React from 'react'
+import React, { useState } from 'react'
 // import useInput from '../hooks/useInput'
 import * as Yup from 'yup'
 import { useFormik } from 'formik'
+import { addNote } from '../../store/actions/noteAction'
+import { useDispatch } from 'react-redux'
 
 const FormInput = () => {
-//   const [title, bindTitle, resetTitle] = useInput()
-//   const [content, bindContent, resetContent] = useInput()
+  const dispatch = useDispatch()
+  const [loading, setLoading] = useState(false)
 
   const validationSchema = Yup.object({
       title: Yup.string().required('Title is required').min(4, 'Input min 4 characters'),
@@ -15,8 +17,22 @@ const FormInput = () => {
 
   const onSubmit = async (values) => {
       const { ...data } = values;
-      console.log(data)
-      formik.resetForm()
+      setLoading(true)
+      try {
+        dispatch(addNote({
+            title: data.title,
+            content: data.content
+        }))
+        setTimeout(() => {
+            setLoading(false)
+            formik.resetForm()
+        }, 3000)
+
+      } catch (error) {
+          console.log(error)
+      }
+
+      
   }
 
   const formik = useFormik({
@@ -64,7 +80,12 @@ const FormInput = () => {
                     </span>
                 </div>
                 <div className="mt-4 form-control">
-                    <button type="submit" className="btn btn-primary">Save Note</button>
+                    <button 
+                        type="submit" 
+                        className={loading ? 'btn btn-primary loading' : 'btn btn-primary' }
+                        disabled={loading}>
+                         { loading ? 'Loading...' : 'Save Note' }
+                    </button>
                 </div>
             </form>
         </div>

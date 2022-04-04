@@ -16,7 +16,7 @@ import {
   getFirebase
 } from 'react-redux-firebase'
 import { createFirestoreInstance, getFirestore, reduxFirestore } from 'redux-firestore'
-import firebase from 'firebase/compat/app'
+import firebase from 'firebase/app'
 import config from './config/firebase'
 
 const store = createStore(rootReducer, compose(
@@ -24,7 +24,7 @@ const store = createStore(rootReducer, compose(
     getFirebase,
     getFirestore
   })),
-  reduxFirestore(config)
+  reduxFirestore(config, firebase)
 )
 )
 
